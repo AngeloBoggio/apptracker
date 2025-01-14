@@ -12,10 +12,10 @@ export default function SignOut() {
   };
 
   return (
-    <div className="w-1/6 mb-7 flex justify-right ">
+    <div className="mb-7 flex">
       <button
         onClick={handleSignOut}
-        className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+        className="w-2/8 bg-red-500 text-white font-bold py-2 px-4 rounded hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
         aria-label="Sign Out"
       >
         Sign Out

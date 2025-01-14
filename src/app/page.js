@@ -55,6 +55,19 @@ export default function Home() {
         });
         console.log("Document successfully written!");
 
+        const q = query(
+          collection(db, "applications"),
+          where("uid", "==", user.uid)
+        );
+
+        const querySnapshot = await getDocs(q);
+        const fetchApplications = querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+
+        setApplications(fetchApplications);
+
         // Reset inputs
         setJobName("");
         setJobUrl("");
@@ -68,20 +81,25 @@ export default function Home() {
   // returns what will be displayed on the site
   return (
     <div className="min-h-screen p-8 bg-gray-100">
-      <SignOut />
+      <div className="flex justify-end">
+        <SignOut />
+      </div>
       <main className="grid grid-rows-2 gap-6">
         {/* Row 1: Header */}
-        <div className="flex items-center justify-between bg-blue-500 text-white p-6 rounded-lg shadow-md">
-          <div className="flex items-inline gap-4">
-            <p className="text-3xl font-bold">{applications.length}</p>
-            <h1 className="text-3xl font-bold">Applications</h1>
+        <div className="flex justify-center">
+          <div className="flex items-center justify-between bg-slate-200 text-gray-700 p-6 rounded-lg shadow-md w-2/6">
+            <div className="flex items-inline gap-4">
+              <p className="text-3xl font-bold">{applications.length}</p>
+              <h1 className="text-3xl font-bold">Applications</h1>
+            </div>
+
+            <button
+              onClick={() => setShowForm(true)} // Toggle modal visibility
+              className="bg-white text-green-600 font-bold text-2xl p-2 rounded-full hover:bg-blue-100"
+            >
+              +
+            </button>
           </div>
-          <button
-            onClick={() => setShowForm(true)} // Toggle modal visibility
-            className="bg-white text-blue-500 font-bold text-2xl p-2 rounded-full hover:bg-blue-100"
-          >
-            +
-          </button>
         </div>
 
         {/* Row 2: Job Applications List */}
@@ -89,7 +107,7 @@ export default function Home() {
           {applications.length > 0 ? (
             <table className="w-full border-collapse border border-gray-300">
               <thead>
-                <tr className="bg-gray-600">
+                <tr className="bg-gray-400">
                   <th className="border border-gray-300 px-4 py-2 text-left">
                     URL
                   </th>
@@ -105,7 +123,7 @@ export default function Home() {
                 {applications.map((app) => (
                   <tr
                     key={app.id}
-                    className="odd:bg-white even:bg-gray-200 hover:bg-gray-300 transition duration-150 "
+                    className="odd:bg-white even:bg-gray-100 hover:bg-gray-200 transition duration-150 "
                   >
                     <td className="border border-gray-300 px-4 py-2 text-blue-500 underline">
                       <a
@@ -183,7 +201,7 @@ export default function Home() {
 
 function Modal({ onClose, children }) {
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
         <button
           onClick={onClose}
