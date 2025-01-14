@@ -34,10 +34,15 @@ export default function SignUp() {
         required
         className="w-full p-2 border rounded"
       />
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded"
-      ></button>
+
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="w-1/2 bg-blue-500 text-white py-2 px-4 rounded h-auto"
+        >
+          Sign Up
+        </button>
+      </div>
     </form>
   );
 }

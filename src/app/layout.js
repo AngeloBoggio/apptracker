@@ -34,10 +34,11 @@ export default function RootLayout({ children }) {
   if (!user) {
     return (
       <html lang="en">
-        <body className="min-h-screen flex items-center justify-center bg-gray-100">
+        <body className="min-h-screen flex items-center justify-center bg-slate-200">
           <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-md">
             {showLogin ? (
               <>
+                <h1 className="text-xl flex justify-center mb-5">Login</h1>
                 <Login />
                 <p className="text-sm mt-4 text-center">
                   Don't have an account?{" "}
@@ -51,12 +52,13 @@ export default function RootLayout({ children }) {
               </>
             ) : (
               <>
+                <h1 className="text-xl flex justify-center mb-5">Register</h1>
                 <SignUp />
                 <p className="text-sm mt-4 text-center">
                   Already have an account?{" "}
                   <button
                     onClick={() => setShowLogin(true)}
-                    className="text-blue-500 underline w-full h-7"
+                    className="text-blue-500 underline w-1/8"
                   >
                     Log In
                   </button>

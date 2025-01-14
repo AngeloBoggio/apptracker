@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs, addDoc, where, query } from "firebase/firestore";
 import { db, auth } from "/Users/gelo/Desktop/SQ/apptracker/firebase";
+import SignOut from "@/components/logout";
 
 export default function Home() {
   /* Initiates the states and their default values */
@@ -67,6 +68,7 @@ export default function Home() {
   // returns what will be displayed on the site
   return (
     <div className="min-h-screen p-8 bg-gray-100">
+      <SignOut />
       <main className="grid grid-rows-2 gap-6">
         {/* Row 1: Header */}
         <div className="flex items-center justify-between bg-blue-500 text-white p-6 rounded-lg shadow-md">

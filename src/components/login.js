@@ -5,6 +5,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -12,7 +13,8 @@ export default function Login() {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("User Logged in");
     } catch (error) {
-      console.error("Error loggin in:", error.message);
+      let errormsg = "Incorrect credentials.";
+      setErrorMessage(errormsg);
     }
   };
 
@@ -30,14 +32,25 @@ export default function Login() {
         type="password"
         placeholder="Password"
         value={password}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         required
         className="w-full p-2 border rounded"
       />
-      <button
-        type="submit"
-        className="w-full bg-blue-500 text-white py-2 px-4 rounded"
-      ></button>
+
+      {errorMessage && (
+        <p className="text-red-500 text-sm flex justify-center">
+          {errorMessage}
+        </p>
+      )}
+
+      <div className="flex justify-center">
+        <button
+          type="submit"
+          className="w-1/2 bg-blue-500 text-white py-2 px-4 rounded h-auto"
+        >
+          Sign In
+        </button>
+      </div>
     </form>
   );
 }
