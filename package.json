@@ -2,6 +2,7 @@
   "name": "apptracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://angeloboggio.github.io/apptracker/",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
